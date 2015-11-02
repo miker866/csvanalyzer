@@ -1,0 +1,19 @@
+.centerAlign {
+	text-align: center;
+}
+
+.rightContent {
+	float: right;
+}
+
+.larger {
+	width: 75%;
+}
+
+.smaller {
+	width: 50%;
+}
+
+.mediumPadding {
+	padding: 10px;
+}

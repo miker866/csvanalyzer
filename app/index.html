@@ -3,16 +3,16 @@
    
    <head>
       <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
-
+      <link rel="stylesheet" type="text/css" href="app.css">
    </head>
    
    <body ng-app="uploadApp" ng-controller="UploadController">
-	  <div style="text-align: center"><h1>{{labels.title}}</h1></div>
-	  <div id="mapping" ng-show="showControls.showMapping" style="width: 75%;">
-	  	<p style="padding: 10px; ">{{labels.mappingInstructions}}</p>
+	  <div class="centerAlign"><h1>{{labels.title}}</h1></div>
+	  <div id="mapping" ng-show="showControls.showMapping">
+	  	<p class="mediumPadding">{{labels.mappingInstructions}}</p>
 	  	<div>
-	  	<div style="width:50%;">
-	  		<div style="float: right;">
+	  	<div class="smaller">
+	  		<div class="rightContent">
 		     	<select id="firstNameSelect" ng-change="handleMapping()" ng-model="model.fieldModel.firstName">
 			  		<option value="-1" disabled>{{labels.selectedText}}</option>
 		         	<option ng:repeat="field in model.fields" value="{{field}}">{{field}}</option>
@@ -22,8 +22,8 @@
 				{{labels.first}}{{labels.fieldSep}}
 		    </div> 
 		 </div>
-	  	<div style="width:50%;">
-	  		<div style="float: right;">
+	  	<div class="smaller">
+	  		<div class="rightContent">
 		     	<select id="lastNameSelect" ng-model="model.fieldModel.lastName" ng-change="handleMapping()">
 			  		<option value="-1" disabled>{{labels.selectedText}}</option>
 		         	<option ng:repeat="field in model.fields" value="{{field}}">{{field}}</option>
@@ -33,8 +33,8 @@
 				{{labels.last}}{{labels.fieldSep}}	  
 		    </div> 
 		 </div>
-	  	<div style="width:50%;">
-	  		<div style="float: right;">
+	  	<div class="smaller">
+	  		<div class="rightContent">
 		     	<select id="emailSelect" ng-model="model.fieldModel.email" ng-change="handleMapping()">
 			  		<option value="-1" disabled>{{labels.selectedText}}</option>
 		         	<option ng:repeat="field in model.fields" value="{{field}}">{{field}}</option>
@@ -48,7 +48,7 @@
 	  </div>
 
 
-<div id="theForm" style="width: 75%">
+<div id="theForm" class="larger">
 	<di ng-show="showControls.showInstructions">{{labels.introInstructions}}</div>
 	<div>
 	   <form name="uploader" ng-submit="submitForm()" enctype="multipart/form-data" method="post">
@@ -58,9 +58,9 @@
 	</div>
 </div>
 
-	<div id="statsDiv" ng-show="showControls.showStats" style="width: 75%; padding-top: 10px;">
-		<div id="statHead" style="text-align: center;"><h2>{{labels.statistics}}</h2></div>
-		<div style="float: right;">
+	<div id="statsDiv" ng-show="showControls.showStats" class="larger mediumPadding">
+		<div id="statHead" class="centerAlign"><h2>{{labels.statistics}}</h2></div>
+		<div class="rightContent">
 			<table>
 				<tr>
 					<td>{{labels.total}}</td>
@@ -83,7 +83,7 @@
 			</table>
 
 		</div>
-		<div id="previewData" style="padding-top: 10px; "><div>{{labels.preview}}</div> 
+		<div id="previewData" class="mediumPadding"><div>{{labels.preview}}</div> 
 		  	<table border=1>
 		  		<tr>
 		  			<th>{{labels.last}}</th>
