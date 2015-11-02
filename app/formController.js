@@ -33,7 +33,8 @@ var mainApp = angular.module("uploadApp", []);
 		         		submitDisable: true,
 		         		showStats: false,
 		         		showMapping: false,
-		         		showInstructions: true
+		         		showInstructions: true,
+		         		showErr: false
 		         	};
 
 		      
@@ -42,8 +43,9 @@ var mainApp = angular.module("uploadApp", []);
 		            $scope.labels = {
 		            	selectedText: 'Select',
 		            	mappingInstructions: 'We will need you to do some work before submitting the file for us! Below is a list of three fields - first name, last name, and email. We need you to define for us which fields in your file correspond to these three fields.',
-		            	introInstructions: 'Welcome to the CSV Analyzer. Please click the "Browse" button below and pick your CSV file.',
+		            	introInstructions: 'Welcome to the CSV Analyzer. Please click the "Browse" button below and pick your CSV file. Your CSV file must be comma delimited.',
 		            	title: 'CSV Analyzer',
+		            	errMsg: 'There is something wrong with the file you are attempting to upload. Please choose anohter one or make changes to it.',
 		            	first: 'First Name',
 		            	last: 'Last Name',
 		            	email: 'Email',
@@ -104,6 +106,7 @@ var mainApp = angular.module("uploadApp", []);
 	            	 $scope.model.fieldModel.email = -1;
 	            	 $scope.showControls.submitDisable = true;
 	            	 $scope.showControls.showStats = false;
+	            	 $scope.showControls.showErr = false;
 
 
 	            	 $scope.model.theFile = file;
@@ -111,15 +114,22 @@ var mainApp = angular.module("uploadApp", []);
 	            	if (typeof $scope.model.headerRow === 'string') {	            		
 	            		$scope.model.fields = $scope.model.headerRow.split(',');
 
-	            		if ($scope.model.fields.length) {
-	            			$scope.handleMapping()
+	            		if ($scope.model.fields.length && $scope.model.fields.length >=3) {
+
+	            			$scope.handleMapping();
+
+	            			$scope.$apply(function() {
+	            				$scope.showControls.showMapping = true;
+	            				$scope.showControls.showInstructions = false;
+	            			});
+
+	            		} else {
+	            			$scope.$apply(function() {
+	            				$scope.showControls.showErr = true;
+	            				$scope.showControls.showInstructions = false;
+	            			});
+	            			
 	            		}
-	            		
-	            		$scope.$apply(function() {
-	            			$scope.showControls.showMapping = true;
-	            			$scope.showControls.showInstructions = false;
-	            		});
-	            		
 	            	}
 	            }
 
@@ -146,8 +156,6 @@ var mainApp = angular.module("uploadApp", []);
 			      			$scope.handleFile(element.target.files[0]);
 			      		}
 			      	}
-
-
 			      });          
 			    }        
 			  }
