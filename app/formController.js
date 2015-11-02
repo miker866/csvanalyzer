@@ -76,8 +76,8 @@ var mainApp = angular.module("uploadApp", []);
 			        .success(function(data){
 			        	this.successHandler(data);
 			        }.bind(this))
-			        .error(function(){
-			        	console.log('nope');
+			        .error(function(err){
+			        	console.log('error: ', err);
 			        });	
 	            };
 
