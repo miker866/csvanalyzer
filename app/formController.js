@@ -111,11 +111,7 @@ var mainApp = angular.module("uploadApp", []);
 	            	if (typeof $scope.model.headerRow === 'string') {	            		
 	            		$scope.model.fields = $scope.model.headerRow.split(',');
 
-
-
-
 	            		if ($scope.model.fields.length) {
-
 	            			$scope.handleMapping()
 	            		}
 	            		
