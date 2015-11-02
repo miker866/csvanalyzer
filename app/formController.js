@@ -45,7 +45,7 @@ var mainApp = angular.module("uploadApp", []);
 		            	mappingInstructions: 'We will need you to do some work before submitting the file for us! Below is a list of three fields - first name, last name, and email. We need you to define for us which fields in your file correspond to these three fields.',
 		            	introInstructions: 'Welcome to the CSV Analyzer. Please click the "Browse" button below and pick your CSV file. Your CSV file must be comma delimited.',
 		            	title: 'CSV Analyzer',
-		            	errMsg: 'There is something wrong with the file you are attempting to upload. Please choose anohter one or make changes to it.',
+		            	errMsg: 'There is something wrong with the file you are attempting to upload. Please choose another one or make changes to it.',
 		            	first: 'First Name',
 		            	last: 'Last Name',
 		            	email: 'Email',
