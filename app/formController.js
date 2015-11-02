@@ -116,10 +116,6 @@ var mainApp = angular.module("uploadApp", []);
 
 	            		if ($scope.model.fields.length) {
 
-	            			if ()
-	            			for (field in $scope.model.fields) {
-	            				if (field)
-	            			}
 	            			$scope.handleMapping()
 	            		}
 	            		
