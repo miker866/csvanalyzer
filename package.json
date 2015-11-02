@@ -1,0 +1,17 @@
+{
+  "name": "csvstat",
+  "version": "1.0.0",
+  "description": "CSV Statistics",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Mike Rothschild",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-webserver": "^0.9.1",
+    "multiparty": "^4.1.2",
+    "requirejs": "^2.1.20"
+  }
+}

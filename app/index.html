@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+   
+   <head>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+
+   </head>
+   
+   <body ng-app="uploadApp" ng-controller="UploadController">
+	  <div style="text-align: center"><h1>{{labels.title}}</h1></div>
+	  <div id="mapping" ng-show="showControls.showMapping" style="width: 75%;">
+	  	<p style="padding: 10px; ">{{labels.mappingInstructions}}</p>
+	  	<div>
+	  	<div style="width:50%;">
+	  		<div style="float: right;">
+		     	<select id="firstNameSelect" ng-change="handleMapping()" ng-model="model.fieldModel.firstName">
+			  		<option value="-1" disabled>{{labels.selectedText}}</option>
+		         	<option ng:repeat="field in model.fields" value="{{field}}">{{field}}</option>
+		     	</select>
+		     </div>
+	  		<div>
+				{{labels.first}}{{labels.fieldSep}}
+		    </div> 
+		 </div>
+	  	<div style="width:50%;">
+	  		<div style="float: right;">
+		     	<select id="lastNameSelect" ng-model="model.fieldModel.lastName" ng-change="handleMapping()">
+			  		<option value="-1" disabled>{{labels.selectedText}}</option>
+		         	<option ng:repeat="field in model.fields" value="{{field}}">{{field}}</option>
+		     	</select>
+		     </div>
+	  		<div>
+				{{labels.last}}{{labels.fieldSep}}	  
+		    </div> 
+		 </div>
+	  	<div style="width:50%;">
+	  		<div style="float: right;">
+		     	<select id="emailSelect" ng-model="model.fieldModel.email" ng-change="handleMapping()">
+			  		<option value="-1" disabled>{{labels.selectedText}}</option>
+		         	<option ng:repeat="field in model.fields" value="{{field}}">{{field}}</option>
+		     	</select>
+		     </div>
+	  		<div>
+				{{labels.email}}{{labels.fieldSep}} 	  
+		    </div> 
+		 </div>
+		</div>
+	  </div>
+
+
+<div id="theForm" style="width: 75%">
+	<di ng-show="showControls.showInstructions">{{labels.introInstructions}}</div>
+	<div>
+	   <form name="uploader" ng-submit="submitForm()" enctype="multipart/form-data" method="post">
+		<input type="file" name="csvFile" on-file-select/>
+	 	<input type="submit" name="submit" value="Evaluate!" ng-disabled="showControls.submitDisable">
+	  </form>
+	</div>
+</div>
+
+	<div id="statsDiv" ng-show="showControls.showStats" style="width: 75%; padding-top: 10px;">
+		<div id="statHead" style="text-align: center;"><h2>{{labels.statistics}}</h2></div>
+		<div style="float: right;">
+			<table>
+				<tr>
+					<td>{{labels.total}}</td>
+					<td>{{model.endStats.total}}</td>
+				</tr>
+				<tr>
+					<td>{{labels.vLastNames}}</td>
+					<td>{{model.endStats.lastNames}}  ({{model.endStats.lastPct}}{{labels.ofTotal}})</td>
+				</tr>
+				<tr>
+					<td>{{labels.vFirstNames}}</td>
+					<td>{{model.endStats.firstNames}} ({{model.endStats.firstPct}}{{labels.ofTotal}})</td>
+				</tr>
+				<tr>
+					<td>{{labels.vEmails}}</td>
+					<td>{{model.endStats.emails}} ({{model.endStats.emailPct}}{{labels.ofTotal}}l)</td>
+				</tr>
+
+
+			</table>
+
+		</div>
+		<div id="previewData" style="padding-top: 10px; "><div>{{labels.preview}}</div> 
+		  	<table border=1>
+		  		<tr>
+		  			<th>{{labels.last}}</th>
+		  			<th>{{labels.first}}</th>
+		  			<th>{{labels.email}}</th>
+		  		</tr>
+		  		<tr ng-repeat="record in records">
+		  			<td>{{record.lastName}}</td>
+		  			<td>{{record.firstName}}</td>
+		  			<td>{{record.email}}</td>
+		  		</tr>
+		  	</table>
+	  	</div>
+
+	 </div>
+      <script src="formController.js"></script>
+   </body>
+</html>
