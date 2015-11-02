@@ -7,6 +7,8 @@ To install and run:
 4) Within that same root directory, run 'gulp server'. This will start up the web server to server the pages, scripts, etc.
 5) Within the same root directory too, also run 'node server.js'. This will start up the back end services
 
+The webserver runs on port 8000 while the back end node server runs on 8080. If you need to run it on a different port than 8080, you will need to change formController.js in the submitForm function to a different port.
+
 Troubleshooting:
 * If you are getting 'gulp not found' types of error messages
 	- You may need to modify your .bashrc file in your profile and put the following in:

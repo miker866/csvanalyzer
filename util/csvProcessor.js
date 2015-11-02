@@ -24,39 +24,32 @@ define(function () {
 				 curRecord = '';
 
 				for (i; i<theData.length; i++) {
-					if (i>0) {
+					curRecord = theData[i].split(',');
+					
+					if (curRecord) {
+						toAddObj = i<=10 ? {} : '';
 						
-						curRecord = theData[i].split(',');
-						
-						if (curRecord) {
-
-							toAddObj = i<=10 ? {} : '';
-							
-							if (curRecord[fields.firstName]) {
-								toAddObj.firstName = curRecord[fields.firstName];
-								stats.firstNames++;
-							}
-
-							if (curRecord[fields.lastName]) {
-								toAddObj.lastName = curRecord[fields.lastName];
-								stats.lastNames++;
-							}
-
-							if (curRecord[fields.email] && isValidEmail(curRecord[fields.email])) {
-								toAddObj.email = curRecord[fields.email];
-								stats.validEmail++;
-							} 
-
-
-							if (typeof toAddObj !== 'string') {
-								stats.previewData.push(toAddObj);
-							}
-
-
+						if (curRecord[fields.firstName]) {
+							toAddObj.firstName = curRecord[fields.firstName];
+							stats.firstNames++;
 						}
-						stats.total++;
 
+						if (curRecord[fields.lastName]) {
+							toAddObj.lastName = curRecord[fields.lastName];
+							stats.lastNames++;
+						}
+
+						if (curRecord[fields.email] && isValidEmail(curRecord[fields.email])) {
+							toAddObj.email = curRecord[fields.email];
+							stats.validEmail++;
+						} 
+
+
+						if (typeof toAddObj !== 'string') {
+							stats.previewData.push(toAddObj);
+						}
 					}
+					stats.total++;
 				}
 
 			}
@@ -77,16 +70,15 @@ define(function () {
 					}
 					
 					var stats = processFile(data, fieldNums);
-
+					console.log('.... Processed a CSV File ....');
 					response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8000'});
-   
    					response.end(JSON.stringify(stats) + '\n\n');
 		
-					
-  				
 				 });
 			 } else {
-	      			response.json(200, '{error: 500}');
+			 		console.log('.... Error Processing CSV File ....');
+	      			response.writeHead(500, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:8000'});
+   					response.end('{error: General}\n\n');
 			 }
 		}.bind(this)	
 	};
